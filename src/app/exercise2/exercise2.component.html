@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+
+        <h2>exercise2!</h2>
+        <p>1. Add a button which says "Display Details"</p>
+        <button (click)="toggleDisplay()">Display Details</button>
+
+        <p>2. Add a paragraph with any content of your choice (e.g. Secret Password = true)</p>
+        <p *ngIf="displayParagraph">05.06.2018 - 3 year anniversary</p>
+        <p *ngIf="displayParagraph">3. Toggle the displaying of that paragraph with the button created in the first step</p>
+
+        <p>4. Log all button clicks in an array and output that array below the secret paragraph (maybe log a timestamp or simply an incrementing number)</p>
+
+    </div>
+  </div>
+</div>
+
+
+<div>
+    <h1>exercise3</h1>
+
+ <button class="btn btn-primary" (click)="onToggleDetails()">Display Details</button>
+
+    <p *ngIf="display">Secret Password = tuna</p>
+
+       <div *ngFor="let logItem of log; let i = index"
+       [ngStyle]="{backgroundColor: i >= 4 ? 'blue' : 'white'}"
+       [ngClass]="{'white-text' : i >= 4}"> {{ logItem }} </div>
+
+</div>
+
+<div class="container">
+    <p
+        [ngStyle]="{backgroundColor: getColor()}"
+        [ngClass]="{online: serverStatus === 'online'}"  >
+  
+    {{'Server'}} with ID {{serverId}} is {{ getServerStatus() }}</p>
+    <!-- <p>{{'Server'}} with ID {{serverId}} is {{ getServerStatus() }}</p> -->
+  </div>
+
+  <div class="container">
+      <label>Server Name</label>
+      <input type="text"
+          class="form control"
+          (input)="onUpdateServerName($event)"
+          [(ngModel)]="serverName">
+      
+          <p>{{ serverName }}</p>
+      
+      
+      <button
+        class="btn btn-primary"
+        [disabled]="!allowNewServer"
+        (click)="onCreateServer()">
+        Add Server
+      </button>
+      
+      <!-- <p> {{serverCreationStatus}} </p> -->
+      <p *ngIf="serverName; else noServer">Server was created, servername is {{serverName}}</p>
+      
+      <ng-template #noServer> <p>No Server was created</p></ng-template>
+      
+      <app-server *ngFor="let server of servers"></app-server>
+      
+      <!-- <app-server></app-server> -->
+      
+      
+      </div>
